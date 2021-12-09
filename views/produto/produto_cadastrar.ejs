@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <%- title%>  </title>
+    <link rel="stylesheet" href="/css/alerta.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+
+<body> 
+    <div id="alerta" class="alerta <%- msg%>">
+        Operação bem sucedida!
+    </div>
+    
+    <div class="container">
+      <%- include("../partials/menu.ejs") %>
+      <h1 style="text-align: center"> <%- title%> de produto</h1>
+        <hr>
+        <form method="POST" action="/produto/cadastrar">
+            <div class="mb-3" id="descricao">
+                <label for="validationCustom02" class="form-label">Descrição</label>
+                <input type="text" class="form-control" id="validationCustom02" name="descricao" value="<%= produto.descricao%>" placeholder="descreva o produto" required>
+            </div>
+
+            <div class="mb-3" id="qtd">
+                <label for="validationCustom02" class="form-label">Quantidade</label>
+                <input type="text" class="form-control" id="validationCustom02" name="qtd" value="<%= produto.qtd%>" placeholder="quantidade" required>
+            </div>
+
+            <div class="mb-3" id="preco">
+                <label for="validationCustom02" class="form-label">Preco</label>
+                <input type="text" class="form-control" id="validationCustom02" name="preco" value="<%= produto.preco%>" placeholder="preço" required>
+            </div>
+
+            <input type="hidden" name="id" value="<%= produto.id%>">
+            <button type="submit" class="btn btn-success"> <%- botao%> </button>
+            
+        </form>
+    </div>
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript">
+        setTimeout(() => {
+            var alerta = document.getElementById("alerta");
+            alerta.className = "alerta";
+        }, 3000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title> <%- title%> </title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <%- include("../partials/menu.ejs")%> 
+        <h1 style="text-align: center;">Relatório de produtos</h1>
+        <hr>
+
+        <% if (produtos.length > 0) { %>
+            <button class="btn btn-primary" type="button" onclick="window.print(); return false;" >Imprimir</button>
+
+            <table class="table table-striped">
+                <tr>
+                    <th><b>Descrção</b></th>
+                    <th><b>Quantidade</b></th>
+                    <th><b>Preço</b></th>
+                </tr>
+
+                <% produtos.forEach(produto=> { %>
+                    <tr>
+                        <td><%= produto.descricao%></td>
+                        <td><%= produto.qtd%></td>
+                        <td><%= produto.preco%></td>
+                    </tr>
+                    <% }) %>
+            </table>
+            <% } else { %>
+                Não há dados de produtos.
+                <% } %>
+    </div>
+    <script src="/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>

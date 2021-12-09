@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>
+        <%- title%>
+    </title>
+    <link rel="stylesheet" href="/css/alerta.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+
+<body>
+    <div id="alerta" class="alerta <%- msg%>">
+        Operação bem sucedida!
+    </div>
+
+    <div class="container">
+        <%- include("../partials/menu.ejs")%>
+            <h1 style="text-align: center;">Listagem de produtos</h1>
+            <hr>
+            <a class="btn btn-success" href="/produto/cadastrar/">Cadastrar</a>
+            <br>
+            <br>
+            <% if (produtos.length > 0) { %>
+                <% produtos.forEach(produto => { %>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"> <%= produto.descricao%> </h5>
+                            <p class="card-text">
+                                <b>Quantidade: </b>
+                                <%= produto.qtd%>
+                            </p>
+
+                            <p class="card-text">
+                                <b>Preço: </b>
+                                <%= produto.preco%>
+                            </p>
+
+                            <a class="btn btn-warning" href="/produto/cadastrar/<%= produto.id%>">Editar</a>
+                            <a class="btn btn-danger" href="/produto/remover/<%= produto.id%>">Remover</a>
+                        </div>
+                    </div>
+
+                    <% }) %>
+            <% } else { %>
+                Não há dados de produtos.
+                <% } %>
+    </div>
+    <script src="/js/bootstrap.bundle.js"></script>
+
+    <script type="text/javascript">
+        setTimeout(() => {
+            var alerta = document.getElementById("alerta");
+            alerta.className = "alerta";
+        }, 3000);
+    </script>
+
+</body>
+
+</html>
